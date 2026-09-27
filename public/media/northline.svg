@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+  <rect width="1600" height="1200" fill="#f0edde"/>
+  <g stroke="#dbd9c9" stroke-width="1"><path d="M100 250h1400M100 425h1400M100 600h1400M100 775h1400M100 950h1400M100 250v700M450 250v700M800 250v700M1150 250v700M1500 250v700"/></g>
+  <g fill="#292d27" font-family="Arial,Helvetica,sans-serif"><text x="100" y="111" font-size="32" font-weight="700" letter-spacing="-1">northline ↗</text><text x="1500" y="105" text-anchor="end" font-size="16" letter-spacing="2">INSIGHT BEFORE OUTPUT.</text></g>
+  <g fill="#ef633d"><rect x="875" y="800" width="120" height="150"/><rect x="1045" y="681" width="120" height="269"/><rect x="1215" y="515" width="120" height="435"/><rect x="1385" y="330" width="115" height="620"/></g>
+  <g fill="#292d27" font-family="Arial,Helvetica,sans-serif" font-size="158" font-weight="700" letter-spacing="-10"><text x="88" y="409">Less noise.</text><text x="88" y="566">More signal.</text></g>
+  <g fill="#292d27" font-family="Arial,Helvetica,sans-serif"><text x="100" y="690" font-size="25">Make every piece of content count.</text><text x="100" y="1090" font-size="17" letter-spacing="2">A CONTENT STRATEGY BUILT ON BETTER QUESTIONS.</text><text x="1500" y="1090" font-size="17" text-anchor="end">ILLUSTRATIVE GRAPHIC</text></g>
+</svg>

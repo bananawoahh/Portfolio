@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1800" viewBox="0 0 2400 1800">
+  <defs>
+    <linearGradient id="sea" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a7e0db"/><stop offset=".58" stop-color="#44bfc1"/><stop offset="1" stop-color="#167da7"/></linearGradient>
+    <linearGradient id="deep" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#293b85"/><stop offset=".56" stop-color="#1b5daa"/><stop offset="1" stop-color="#318bca"/></linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8ecfe9"/><stop offset="1" stop-color="#4a97ce"/></linearGradient>
+    <linearGradient id="navy" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#254d91"/><stop offset="1" stop-color="#102c67"/></linearGradient>
+    <radialGradient id="light" cx=".65" cy=".05" r="1"><stop stop-color="#e5f8e6" stop-opacity=".42"/><stop offset=".7" stop-color="#a1dfdc" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="2400" height="1800" fill="url(#sea)"/>
+  <path d="M0 0h1230c-58 274-161 547-372 776C641 1012 319 1109 0 1040Z" fill="url(#deep)"/>
+  <path d="M0 1027c457 118 942-271 1215-822-89 489-327 930-694 1189-202 144-372 204-521 191Z" fill="url(#sky)"/>
+  <path d="M2400 850c-429 19-608 188-954 454-242 186-505 303-826 307-226 3-431-54-620-146v335h2400Z" fill="url(#navy)"/>
+  <path d="M2400 188c-441 7-686 194-742 485-58 305 143 581 742 701Z" fill="#b2e8d2" opacity=".3"/>
+  <path d="M0 1040c319 69 641-28 858-264C1069 547 1172 274 1230 0M0 1465c189 92 394 149 620 146 321-4 584-121 826-307 346-266 525-435 954-454" fill="none" stroke="#c5eef3" stroke-width="2" opacity=".4"/>
+  <rect width="2400" height="1800" fill="url(#light)"/>
+</svg>

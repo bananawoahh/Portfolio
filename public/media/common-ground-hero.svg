@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+  <rect width="1600" height="1200" fill="#ef6239"/>
+  <g fill="none" stroke="#f68e6e" stroke-width="1"><circle cx="1220" cy="620" r="460"/><circle cx="1220" cy="620" r="350"/><path d="M0 1020h1600M100 0v1200"/></g>
+  <g fill="#382e23" font-family="Arial,Helvetica,sans-serif"><text x="102" y="109" font-size="35" font-weight="700" letter-spacing="-2">common ground<tspan fill="#fff3de">.</tspan></text><text x="1493" y="100" text-anchor="end" font-size="16" letter-spacing="3">GOOD COFFEE. GOOD COMPANY.</text></g>
+  <g fill="#fff3de" font-family="Arial,Helvetica,sans-serif" font-size="166" font-weight="700" letter-spacing="-10"><text x="91" y="370">Make</text><text x="91" y="525">time for</text><text x="91" y="680">good.</text></g>
+  <text x="104" y="763" font-family="Arial,Helvetica,sans-serif" font-size="24" fill="#382e23">Your daily dose of a little more human.</text>
+  <ellipse cx="1158" cy="902" rx="305" ry="69" fill="#cb4928"/>
+  <g transform="rotate(12 1120 585)">
+    <path d="M1300 442c198-28 206 269 19 285l-17-60c112-15 109-176-4-155Z" fill="#e8dfc5"/>
+    <path d="M1317 459c150-10 143 237 0 249" fill="none" stroke="#fff7e4" stroke-width="16"/>
+    <path d="M875 402 913 784c12 100 346 104 364 0l42-382Z" fill="#f8efd7"/>
+    <path d="m1239 437-34 370c-10 26-21 43-47 49 63-7 111-31 119-72l42-382Z" fill="#e3d8ba"/>
+    <ellipse cx="1097" cy="402" rx="222" ry="89" fill="#fff8e8"/>
+    <ellipse cx="1097" cy="404" rx="190" ry="64" fill="#d9c9a7"/>
+    <ellipse cx="1097" cy="414" rx="178" ry="52" fill="#513123"/>
+    <ellipse cx="1097" cy="417" rx="148" ry="40" fill="#af7144"/>
+    <path d="M1040 410c38-45 113-23 81 15-19 21-58 11-69-6 7 23 43 34 64 27-38 13-92-14-76-36Z" fill="#f5dfb2"/>
+    <g fill="#d5502b" font-family="Arial,Helvetica,sans-serif" text-anchor="middle" font-weight="700"><text x="1100" y="610" font-size="42" letter-spacing="-2">common</text><text x="1100" y="657" font-size="42" letter-spacing="-2">ground.</text><text x="1100" y="710" font-size="11" letter-spacing="3">A DAILY RITUAL</text></g>
+  </g>
+  <g fill="#382e23" font-family="Arial,Helvetica,sans-serif"><text x="104" y="1096" font-size="17" letter-spacing="2">A SMALL MOMENT. A SHARED RITUAL.</text><text x="1494" y="1096" text-anchor="end" font-size="17">BRAND CAMPAIGN / CONCEPT 01</text></g>
+  <path d="M1450 870v90m-45-45h90m-77-32 64 64m-64 0 64-64" stroke="#fff3de" stroke-width="12"/>
+</svg>
