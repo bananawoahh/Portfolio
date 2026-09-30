@@ -14,3 +14,20 @@ export function displayDate(value: string): string {
     timeZone: 'UTC',
   }).format(date);
 }
+
+export function instagramUrl(value?: string): string | undefined {
+  if (!value?.trim()) return undefined;
+  try {
+    const url = new URL(value.trim());
+    if (
+      url.protocol === 'https:' &&
+      (url.hostname === 'instagram.com' || url.hostname.endsWith('.instagram.com')) &&
+      !url.username &&
+      !url.password
+    )
+      return url.href;
+  } catch {
+    /* Incomplete URLs remain unlinked while editing. */
+  }
+  return undefined;
+}

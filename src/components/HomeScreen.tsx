@@ -17,15 +17,13 @@ export function HomeScreen({
       <div className="home-content">
         <HomeWidgets data={data} now={now} onOpen={onOpen} />
         <nav className="home-apps" aria-label="Portfolio apps">
-          {(['portfolio', 'resume', 'skills', 'contact'] as const).map((app) => (
+          {(['portfolio', 'resume', 'skills', 'notes'] as const).map((app) => (
             <AppLauncher key={app} app={app} onOpen={onOpen} />
           ))}
         </nav>
         <p className="home-welcome"></p>
         <Dock onOpen={onOpen} />
-        {data.sampleContent && (
-          <p className="sample-home"></p>
-        )}
+        {data.sampleContent && <p className="sample-home"></p>}
       </div>
     </section>
   );

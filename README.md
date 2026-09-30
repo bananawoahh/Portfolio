@@ -32,13 +32,13 @@ if `git --version` reports that developer tools are missing. Git is not needed t
 
 1. Replace `profile`: name, initials, professional title, location, availability, positioning,
    biography, and optional photo.
-2. Set `contact.email` and complete social-profile URLs. Empty values intentionally display unlinked
-   “coming soon” placeholders.
+2. Edit `notes.title`, `notes.body`, and `notes.signOff` for your personal message to readers.
+   Keep your LinkedIn URL in `contact.socials` for the Resume app.
 3. Replace the sample projects and experience. Duplicate a project record to add another entry; use a
    unique `id`. Entries with `type: 'project'` become Portfolio reels, in array order; entries with
    `type: 'experience'` appear in Resume. Replace `resume.education` with your actual qualifications.
-4. Replace sample metrics with substantiated results, including comparison periods and context.
-   Use an empty `metrics` array when numerical outcomes are unavailable.
+4. Edit each project’s `description` for its short reel caption. Metrics and detailed case-study fields
+   are retained in the data but are no longer displayed in Portfolio.
 5. Update SEO title, description, image, and image alternative text. `seo.siteUrl` can remain empty for
    GitHub Pages because the deployment workflow supplies the canonical URL.
 6. After replacing fictional content, set `sampleContent: false` and each real project's `illustrative: false`.
@@ -56,18 +56,35 @@ Add `layout` beside a project's `title` or `type` in `src/data/portfolio.ts`:
 layout: 'portrait', // 9:16 vertical frame
 ```
 
-Options: `'auto'` (existing adaptive layout, also the default when omitted), `'portrait'`
+Options: `'auto'` (automatically fits portrait files to the available reel space and keeps landscape framing; also the default when omitted), `'portrait'`
 (9:16), `'square'` (1:1), `'landscape'` (16:9), or custom proportions:
 
 ```ts
 layout: { width: 4, height: 5 }, // Same ratio as 1080 × 1350
 ```
 
-This changes that project's media frame in both its reel and case study. Frames scale to the
-available screen; values are proportions, not fixed pixels. Each project's carousel uses one
-consistent frame. Images/videos remain uncropped, so mismatched assets may have empty space.
+This changes that project's reel media frame. Frames scale to the
+available screen; values are proportions, not fixed pixels. Explicit layout choices use one consistent frame per carousel; auto layout adapts to the active file. Images/videos remain uncropped, so mismatched assets may have empty space.
 Keep media `width` and `height` set to the original file dimensions. Captions and navigation
 remain responsive, and tall content scrolls inside the iPad.
+
+### Link an Instagram post or reel
+
+Add `instagramUrl` to any project in `src/data/portfolio.ts`:
+
+```ts
+instagramUrl: 'https://www.instagram.com/reel/YOUR_POST_ID/',
+media: [], // No upload required: shows a styled text preview.
+```
+
+For a thumbnail, keep one image record in `media` instead of an empty array. The project
+shows a **View on Instagram** link that opens in a new tab. Both `/p/` post links and
+`/reel/` links work. Paste the full HTTPS link copied from Instagram. Leave the field
+empty or omit it for regular uploaded projects.
+
+Thumbnails are not fetched automatically from Instagram, and no Instagram scripts or embeds
+load on your portfolio. Visitors see the original content on Instagram, subject to its access
+settings. A failed thumbnail still leaves the caption and Instagram link available.
 
 ### Upload media
 
@@ -92,14 +109,14 @@ featured Portfolio widget, four apps, and a dock of favourites. No live weather,
 integration is simulated.
 
 - **Portfolio:** scroll/swipe vertically between projects, swipe horizontally between assets, or use
-  the arrow buttons. “View case study” opens the complete challenge, strategy, and results.
+  the arrow buttons. Each reel shows the project media, title, and short description.
 - **Resume:** local profile, About, experience, and education. Set the `LinkedIn` URL in
   `contact.socials` to activate “Open LinkedIn.” This opens a new tab; it does not embed or synchronize LinkedIn.
 - **Skills:** your editable skill groups.
-- **Contact:** your email and social links, with honest placeholders for missing destinations.
+- **Notes:** a personal message to your reader. Edit `notes.title`, `notes.body`, and `notes.signOff`.
+  Use `\n` for a new line or `\n\n` between paragraphs. This is published text, not a visitor-editable notepad.
 
-**Home** returns to the app launcher. **Escape** returns from a case study to its reel, then from an app
-Home. App positions persist while the page stays open, including after relocking. Refreshing starts a
+**Home** and **Escape** return to the app launcher. App positions persist while the page stays open, including after relocking. Refreshing starts a
 new session. In the focused reel area, Up/Down change projects; Left/Right work in a focused carousel.
 Videos never autoplay and pause when their app, reel, or slide becomes inactive. Reduced motion disables
 unlock animation and smooth scrolling.
@@ -165,7 +182,7 @@ npm run test:e2e
 Browser checks cover desktop, tablet, phone, short landscape, and enlarged-text layouts; lock/unlock
 and cancelled gestures; app navigation; reel/media controls; focus restoration; retained scroll
 positions; reduced motion; wallpaper fallback; and deployed asset paths. Unit tests also verify local
-clock updates across midnight and configured/unconfigured LinkedIn and email links.
+clock updates across midnight and configured/unconfigured LinkedIn links.
 To test a repository-prefixed build, also pass `BASE_PATH=/Portfolio/` to `npm run test:e2e`.
 For an existing Chrome installation, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to its executable
 instead of downloading Playwright's Chromium.

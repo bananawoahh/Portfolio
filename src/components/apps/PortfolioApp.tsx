@@ -1,19 +1,11 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { Portfolio } from '../../types';
-import { displayDate } from '../../lib/media';
+import { displayDate, instagramUrl } from '../../lib/media';
 import { Navigation } from '../Navigation';
 import { MediaCarousel } from '../MediaCarousel';
 import { Arrow } from '../Icon';
 
-export function PortfolioApp({
-  data,
-  active,
-  onOpenProject,
-}: {
-  data: Portfolio;
-  active: boolean;
-  onOpenProject: (id: string) => void;
-}) {
+export function PortfolioApp({ data, active }: { data: Portfolio; active: boolean }) {
   const projects = data.projects.filter((project) => project.type === 'project');
   const [index, setIndex] = useState(0);
   const feedRef = useRef<HTMLDivElement>(null);
@@ -114,68 +106,71 @@ export function PortfolioApp({
           }
         }}
       >
-        {projects.map((project, position) => (
-          <article
-            key={project.id}
-            className="project-reel"
-            aria-labelledby={`reel-${project.id}`}
-            inert={position !== index}
-          >
-            <header className="reel-byline">
-              <span className="client-avatar" aria-hidden="true">
-                {project.clientInitials}
-                <span>.</span>
-              </span>
-              <div>
-                <strong>{project.client}</strong>
-                <span>
-                  {project.discipline} · {displayDate(project.date)}
+        {projects.map((project, position) => {
+          const instagram = instagramUrl(project.instagramUrl);
+          return (
+            <article
+              key={project.id}
+              className="project-reel"
+              aria-labelledby={`reel-${project.id}`}
+              inert={position !== index}
+            >
+              <header className="reel-byline">
+                <span className="client-avatar" aria-hidden="true">
+                  {project.clientInitials}
+                  <span>.</span>
                 </span>
-              </div>
-              <span className="reel-edition">{String(position + 1).padStart(2, '0')}</span>
-            </header>
-            <div className="reel-media">
-              <MediaCarousel
-                media={project.media}
-                title={project.title}
-                layout={project.layout}
-                isActive={active && index === position}
-              />
-            </div>
-            <div className="reel-caption">
-              <div className="reel-kicker">
-                <span className="eyebrow">{project.discipline}</span>
-                {project.illustrative && <span className="sample-label">Illustrative project</span>}
-              </div>
-              <h2 id={`reel-${project.id}`}>{project.title}</h2>
-              <p className="reel-role">{project.role}</p>
-              <p className="reel-description">{project.description}</p>
-              <div className="reel-bottom">
-                {project.metrics[0] ? (
-                  <div className="reel-highlight">
-                    <strong>{project.metrics[0].value}</strong>
-                    <span>
-                      {project.metrics[0].label}
-                      {project.illustrative && <small>Sample outcome</small>}
+                <div>
+                  <strong>{project.client}</strong>
+                  <span>
+                    {project.discipline} · {displayDate(project.date)}
+                  </span>
+                </div>
+                <span className="reel-edition">{String(position + 1).padStart(2, '0')}</span>
+              </header>
+              <div className="reel-media">
+                {instagram && !project.media.length ? (
+                  <div className="instagram-preview">
+                    <span className="eyebrow">On Instagram</span>
+                    <span className="instagram-preview-mark" aria-hidden="true">
+                      <Arrow />
                     </span>
+                    <p>{project.title}</p>
+                    <span>Open the original post or reel to see the work.</span>
                   </div>
                 ) : (
-                  <span className="reel-no-metric">
-                    The thinking behind the work <Arrow />
-                  </span>
+                  <MediaCarousel
+                    media={project.media}
+                    title={project.title}
+                    layout={project.layout}
+                    isActive={active && index === position}
+                  />
                 )}
-                <button
-                  className="case-study-button"
-                  id={`open-project-${project.id}`}
-                  type="button"
-                  onClick={() => onOpenProject(project.id)}
-                >
-                  View case study <Arrow />
-                </button>
               </div>
-            </div>
-          </article>
-        ))}
+              <div className="reel-caption">
+                <div className="reel-kicker">
+                  <span className="eyebrow">{project.discipline}</span>
+                  {project.illustrative && (
+                    <span className="sample-label">Illustrative project</span>
+                  )}
+                </div>
+                <h2 id={`reel-${project.id}`}>{project.title}</h2>
+                <p className="reel-description">{project.description}</p>
+                {instagram && (
+                  <a
+                    className="instagram-link"
+                    href={instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View on Instagram <Arrow />
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                )}
+              </div>
+            </article>
+          );
+        })}
         {!projects.length && (
           <div className="empty-state">
             <h2>Good things are in the works.</h2>

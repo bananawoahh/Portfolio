@@ -69,9 +69,7 @@ export function ResumeApp({ data }: { data: Portfolio }) {
                 <h3>{entry.role}</h3>
                 <p className="experience-company">{entry.client}</p>
                 <span className="entry-date">{entry.date}</span>
-                <p>{entry.description}</p>
-                <p>{entry.strategy}</p>
-                <p>{entry.results}</p>
+                <p className="experience-description">{entry.description}</p>
                 {entry.illustrative && (
                   <span className="sample-label">Illustrative experience</span>
                 )}
@@ -94,7 +92,7 @@ export function ResumeApp({ data }: { data: Portfolio }) {
         </section>
         <p className="app-footnote">
           {data.sampleContent
-            ? 'Sample resume · replace with your experience and education.'
+            ? ''
             : 'A snapshot of my professional journey.'}
         </p>
       </div>
@@ -117,11 +115,11 @@ export function SkillsApp({ data }: { data: Portfolio }) {
         <div className="app-introduction">
           <span className="eyebrow">A connected skill set</span>
           <h2>
-            From the why
+            My Skills
             <br />
-            to the what’s next.
+            This is what I bring
           </h2>
-          <p>Thoughtful strategy, creative execution, and a clear understanding of what worked.</p>
+          <p>Creativity, adaptability, communication.</p>
           <Asterisk />
         </div>
         <div className="skills-grid">

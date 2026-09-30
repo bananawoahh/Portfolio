@@ -249,3 +249,75 @@
   height: 100%;
   aspect-ratio: auto;
 }
+
+/* Portrait frames fit the space left by the caption and carousel controls. */
+.reel-media:has(> .carousel-portrait) {
+  min-height: 0;
+}
+.reel-media > .carousel.carousel-portrait {
+  width: min(100%, max(190px, calc(var(--portrait-height, 40cqh) * var(--media-ratio))));
+  margin-block: 8px auto;
+}
+.reel-media > .carousel.carousel-portrait .carousel-track {
+  width: min(100%, calc(var(--portrait-height, 40cqh) * var(--media-ratio)));
+  margin-inline: auto;
+}
+.carousel-portrait .carousel-controls {
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-inline: 4px;
+  gap: 2px;
+}
+
+.instagram-preview {
+  flex: 1;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 16px;
+  padding: clamp(20px, 4cqw, 44px);
+  background: #dce1ce;
+  color: #343c2c;
+}
+.instagram-preview .eyebrow {
+  font-size: 0.6rem;
+}
+.instagram-preview-mark svg {
+  width: 36px;
+  height: 36px;
+  color: #ad3c19;
+}
+.instagram-preview p {
+  font-size: clamp(1.3rem, 3cqw, 2.2rem);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+.instagram-preview > span:last-child {
+  font-size: 0.7rem;
+  line-height: 1.6;
+}
+.instagram-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin-top: 12px;
+  color: #f8b198;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.instagram-link svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.instagram-link:hover {
+  color: #ffe2d5;
+}
+.instagram-link:focus-visible {
+  outline-color: #ffb294;
+}

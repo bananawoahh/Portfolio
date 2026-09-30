@@ -10,9 +10,7 @@ export function AppLauncher({
   onOpen: (id: AppId) => void;
   dock?: boolean;
 }) {
-  const title = { portfolio: 'Portfolio', resume: 'Resume', skills: 'Skills', contact: 'Contact' }[
-    app
-  ];
+  const title = { portfolio: 'Portfolio', resume: 'Resume', skills: 'Skills', notes: 'Notes' }[app];
   return (
     <button
       id={`${dock ? 'dock' : 'launch'}-${app}`}

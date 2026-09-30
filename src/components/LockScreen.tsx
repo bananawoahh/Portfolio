@@ -84,7 +84,7 @@ export function LockScreen({
         </time>
       </div>
       <div className="lock-owner">
-        <span>A little window into my world</span>
+        <span></span>
         <h1>{name}’s portfolio</h1>
       </div>
       <button

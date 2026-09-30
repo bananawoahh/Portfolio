@@ -1,4 +1,4 @@
-export type AppId = 'portfolio' | 'resume' | 'skills' | 'contact';
+export type AppId = 'portfolio' | 'resume' | 'skills' | 'notes';
 
 export interface Education {
   institution: string;
@@ -39,6 +39,8 @@ export type ProjectLayout =
   'auto' | 'portrait' | 'square' | 'landscape' | { width: number; height: number };
 
 export interface Project {
+  /** Optional public post/reel URL; opens externally, never embedded. */
+  instagramUrl?: string;
   layout?: ProjectLayout;
   id: string;
   type: 'project' | 'experience';
@@ -59,6 +61,7 @@ export interface Project {
 }
 
 export interface Portfolio {
+  notes: { title: string; body: string; signOff: string };
   sampleContent: boolean;
   device: { wallpaper: string; wallpaperPosition: string };
   resume: { education: Education[] };

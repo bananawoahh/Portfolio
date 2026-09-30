@@ -14,29 +14,40 @@ export const portfolio: Portfolio = {
   resume: {
     education: [
       {
-        institution: 'Your university or institution', // REPLACE
-        qualification: 'Bachelor of Communications — sample qualification',
-        date: '2021–2024',
+        institution: 'The University of Melbourne', // REPLACE
+        qualification: 'Bachelor of Arts (Media and Communication)',
+        date: 'July 2023 - March 2026',
         description:
-          'Replace with your actual qualification, study dates, and relevant areas of study.',
+          '• Grade: H1 First Class Honours\n• Awards: Melbourne Global Scholars Award 2025\n• Co-Curricular Activities: Farrago Magazine (Social Media Team)',
+      },
+      {
+        institution: 'King’s College London', // REPLACE
+        qualification: 'Study Abroad',
+        date: 'Sep. 2025 - Jan. 2026',
+        description: '• Grade: First Class\n• Co-Curricular Activities: DJ Society',
       },
     ],
   },
   profile: {
-    name: 'Boody', // REPLACE with your name
-    initials: 'BB',
-    title: 'Marketing & communications',
+    name: 'King Shi', // REPLACE with your name
+    initials: 'KS',
+    title: '',
     location: 'Melbourne, Australia', // REPLACE
-    availability: 'Open to good conversations',
+    availability: '',
     headline: ['Good stories.', 'Clear strategy.', 'Real impact.'],
-    positioning:
-      'I turn brand ambitions into stories people connect with. A curious mind working at the intersection of marketing, content, and communications.',
+    positioning: '',
     photo: '', // Optional: media/your-name-profile.webp
-    aboutHeading: 'A strategic mind.\nA creative instinct.',
+    aboutHeading: 'Unimelb Graduate!!',
     about: [
-      'I’m Alex, a marketing and communications professional who believes the best work starts with listening. To the audience, to the data, and to the question behind the brief.',
-      'From the first insight to the final report, I connect thoughtful strategy with content that feels human. I like clear ideas, collaborative teams, and making the complicated feel simple.',
+      'I’m King, a media and communications graduate with experience across communications, marketing and customer-facing roles.',
+      'A curious and adaptable communicator who learns quickly and works well with people.',
     ],
+  },
+  // EDIT HERE: your personal message to readers. Use \n for new lines.
+  notes: {
+    title: '',
+    body: 'Thanks for taking a look around. I hope these projects give you a sense of how I think, what I can do, and the kind of work I enjoy.\n\nI’m always learning, and I’m excited to bring that curiosity to my next opportunity. Thank you for considering my application. I hope to hear from you soon.',
+    signOff: 'King.', // Replace with your own closing or signature.
   },
   contact: {
     heading: 'Let’s make\nsomething matter.',
@@ -44,7 +55,7 @@ export const portfolio: Portfolio = {
       'Have a story to tell, a challenge to untangle, or a team I should meet? I’d love to hear about it.',
     email: '', // REPLACE with your real email, e.g. hello@yourdomain.com
     socials: [
-      { label: 'LinkedIn', url: '' }, // REPLACE with complete https:// URLs
+      { label: 'LinkedIn', url: 'https://www.linkedin.com/in/king-shi/' }, // REPLACE with complete https:// URLs
       { label: 'Instagram', url: '' },
     ],
   },
@@ -58,40 +69,50 @@ export const portfolio: Portfolio = {
   },
   skills: [
     {
-      title: 'Find the direction.',
-      description: 'The right questions before the big ideas.',
-      items: ['Marketing strategy', 'Audience research', 'Brand positioning'],
+      title: 'I love to learn.',
+      description:
+        'Curious, adaptable, a desire to learn new skills. Some tools I’ve self-learnt include:',
+      items: ['Final Cut Pro', 'CapCut', 'Affinity', 'Logic Pro', 'Canva', 'Making this website!'],
     },
     {
-      title: 'Make it resonate.',
-      description: 'Ideas that sound human and feel relevant.',
-      items: ['Content creation', 'Social media', 'Brand storytelling'],
+      title: 'Social Media.',
+      description: 'Creating, publishing, consuming. Some of them I’ve done it across:',
+      items: ['Instagram', 'TikTok', 'Facebook'],
     },
     {
-      title: 'Move it forward.',
-      description: 'Clear messages, considered channels, shared goals.',
-      items: ['Communications', 'Integrated campaigns', 'Media planning'],
+      title: 'Languages.',
+      description: 'Connection across Cultures.',
+      items: [
+        'Native English Speaker',
+        'Limited working proficiency Mandarin',
+        'Limited working proficiency Cantonese',
+      ],
     },
     {
-      title: 'Know what worked.',
-      description: 'Connecting creative decisions to meaningful outcomes.',
-      items: ['Analytics & reporting', 'Campaign optimisation', 'Social listening'],
+      title: 'Certifications.',
+      description: 'Always good to have these.',
+      items: [
+        'First Aid (Valid until mid 2029)',
+        'Working with Childrens’s Check (vaild until April 2027)',
+      ],
     },
   ],
   projects: [
     {
-      id: 'common-ground',
+      id: 'event-posters',
       type: 'project',
+      instagramUrl: '', // Paste your https://www.instagram.com/p/.../ or /reel/.../ link. Optional.
+
       layout: 'auto', // 'portrait' (9:16), 'square', 'landscape' (16:9), or { width: 4, height: 5 }
-      title: 'Ah',
-      client: 'Common Ground Coffee',
-      clientInitials: 'cg',
-      role: 'Campaign strategy & creative direction',
-      date: '2025-11',
-      discipline: 'Brand campaign',
-      illustrative: true,
+      title: 'Promotional Event Posters',
+      client: 'Sunflower Care Victoria',
+      clientInitials: 'SFCV',
+      role: 'Communications Officer',
+      date: 'February 2026 - Present',
+      discipline: 'Marketing',
+      illustrative: false,
       description:
-        'Turning an everyday coffee run into a shared neighbourhood ritual. An integrated launch that gave a small coffee brand a much bigger conversation.',
+        'Cohesive and brand-aligned designs advertising group activities for NDIS participants, promoting social support, community participation and skills development. Working in English and Chinese.',
       challenge:
         'Build recognition for an independent coffee subscription in a crowded category, without relying on a large paid-media budget.',
       strategy:
@@ -111,25 +132,47 @@ export const portfolio: Portfolio = {
       media: [
         {
           type: 'image',
-          src: 'media/smash-room.svg',
-          alt: 'ah',
+          src: 'media/smash-room.png',
+          alt: 'smash-room',
+          width: 1600,
+          height: 1200,
+        },
+        {
+          type: 'image',
+          src: 'media/jigsaw.png',
+          alt: 'jigsaw',
+          width: 1600,
+          height: 1200,
+        },
+        {
+          type: 'image',
+          src: 'media/escape-room.png',
+          alt: 'escape-room',
+          width: 1600,
+          height: 1200,
+        },
+        {
+          type: 'image',
+          src: 'media/smash-room-chin.png',
+          alt: 'escape-room-chinese',
           width: 1600,
           height: 1200,
         },
       ],
     },
     {
-      id: 'after-hours',
+      id: 'whatever',
       type: 'project',
-      title: 'Culture, beyond the usual crowd.',
-      client: 'After Hours Arts',
-      clientInitials: 'ah',
-      role: 'Social strategy & content production',
-      date: '2025-08',
-      discipline: 'Social & content',
-      illustrative: true,
+      instagramUrl: 'https://www.instagram.com/reel/Da6lZ83hwXh/', // Paste your https://www.instagram.com/p/.../ or /reel/.../ link. Optional.
+      title: 'kinshee',
+      client: 'Self',
+      clientInitials: '',
+      role: 'independent music artist',
+      date: 'Present',
+      discipline: 'Independent Music Artist',
+      illustrative: false,
       description:
-        'Opening the doors to a new generation of gallery-goers through a playful, people-first social series.',
+        'I make music, fully independent. From recording, to editing, to distribution, to promotion. Have a look at my promo campaign!',
       challenge:
         'Help a local arts programme reach younger audiences who felt that galleries were not for them.',
       strategy:
@@ -144,7 +187,7 @@ export const portfolio: Portfolio = {
       media: [
         {
           type: 'image',
-          src: 'media/after-hours.svg',
+          src: 'media/whatever-thumb.png',
           alt: 'Original black-and-ivory After Hours arts poster with intersecting orange circles and the words Art is for everyone.',
           width: 1600,
           height: 1200,
@@ -152,17 +195,18 @@ export const portfolio: Portfolio = {
       ],
     },
     {
-      id: 'better-together',
+      id: 'teasr',
       type: 'project',
-      title: 'A shared purpose. A clearer voice.',
-      client: 'Neighbourhood Collective',
-      clientInitials: 'nc',
-      role: 'Communications planning & copywriting',
-      date: '2025-05',
-      discipline: 'Communications',
-      illustrative: true,
+      instagramUrl: 'https://www.instagram.com/reel/DbQVFT2x314/',
+      title: 'kinshee',
+      client: 'Self',
+      clientInitials: '',
+      role: '',
+      date: 'Present',
+      discipline: 'Independent Music Artist',
+      illustrative: false,
       description:
-        'A communications toolkit that helped a community organisation tell one clear story across many different voices.',
+        'Brand Imaging, Visual Identity, Storytelling. One of my songs ended up on the radio on Triple J Unearthed! See my teaser reel for it on Instagram below.',
       challenge:
         'Unify fragmented messaging across volunteers, partners, and public channels while keeping the organisation’s warmth.',
       strategy:
@@ -181,66 +225,92 @@ export const portfolio: Portfolio = {
       media: [
         {
           type: 'image',
-          src: 'media/better-together.svg',
-          alt: 'Original Neighbourhood Collective editorial artwork with overlapping human-shaped symbols and the words Better, together.',
+          src: 'media/triple-j.png',
+          alt: 'RadioPlay',
           width: 1600,
           height: 1200,
         },
       ],
     },
+
     {
-      id: 'northline',
-      type: 'project',
-      title: 'From more content to better content.',
-      client: 'Northline Studio',
-      clientInitials: 'ns',
-      role: 'Content audit & performance analysis',
-      date: '2025-02',
-      discipline: 'Strategy & analytics',
-      illustrative: true,
+      id: 'studio-experience',
+      type: 'experience',
+      title: 'Connecting the dots, every day.',
+      client: 'Sunflower Care Victoria',
+      clientInitials: 'SFCV',
+      role: 'Communications Officer/Disability Support Worker',
+      date: 'Feb. 2026 - Present',
+      discipline: 'Experience',
+      illustrative: false,
       description:
-        'Replacing a busy publishing schedule with an insight-led content system designed to earn attention and generate qualified interest.',
+        'Main tasks involve invoicing, creating advertising material, and other miscellaneous admin. I ocassionally help out in supporting participants 1 on 1 or in group settings.',
       challenge:
-        'A growing design studio was publishing regularly, but could not connect its content efforts to commercial outcomes.',
+        'Keep multiple client workstreams aligned while maintaining a consistent standard across channels.',
       strategy:
-        'Audited six months of content, introduced a shared measurement framework, and tested three audience-focused pillars. Built a concise reporting dashboard linking saves, site visits, and enquiries.',
+        'Coordinated campaign calendars, wrote social and email content, briefed creative partners, and translated monthly reporting into clear next steps.',
       results:
-        'The sample eight-week test produced more qualified enquiries with fewer posts, giving the team a clearer basis for future investment.',
-      metrics: [
-        {
-          value: '+62%',
-          label: 'qualified enquiries',
-          context: 'Compared with the prior eight weeks',
-        },
-        {
-          value: '−25%',
-          label: 'publishing volume',
-          context: 'With a focus on higher-value formats',
-        },
-      ],
-      tags: ['Analytics', 'Content strategy', 'Optimisation'],
-      media: [
-        {
-          type: 'image',
-          src: 'media/northline.svg',
-          alt: 'Original Northline strategy graphic: Less noise. More signal. with a rising orange bar chart.',
-          width: 1600,
-          height: 1200,
-        },
-      ],
+        'Introduced a shared briefing template and reporting rhythm that helped the team make clearer decisions. Replace this entry with your actual responsibilities and achievements.',
+      metrics: [],
+      tags: ['Project coordination', 'Copywriting', 'Reporting'],
+      media: [],
     },
     {
       id: 'studio-experience',
       type: 'experience',
       title: 'Connecting the dots, every day.',
-      client: 'Fieldwork Creative — sample employer',
-      clientInitials: 'fc',
-      role: 'Marketing & Communications Coordinator',
-      date: '2024–2025',
+      client: 'Luna Park Melbourne',
+      clientInitials: 'LPM',
+      role: 'Food and Beverage Attendant',
+      date: 'March 2022 - Aug. 2025',
       discipline: 'Experience',
-      illustrative: true,
+      illustrative: false,
       description:
-        'A sample professional experience entry showing how a day-to-day role connects planning, creative production, and reporting.',
+        'Hospitality and customer service job covering front-of-house, back-of-house, barista and many other roles.\n Got to go on the rides for free, that was pretty cool.',
+      challenge:
+        'Keep multiple client workstreams aligned while maintaining a consistent standard across channels.',
+      strategy:
+        'Coordinated campaign calendars, wrote social and email content, briefed creative partners, and translated monthly reporting into clear next steps.',
+      results:
+        'Introduced a shared briefing template and reporting rhythm that helped the team make clearer decisions. Replace this entry with your actual responsibilities and achievements.',
+      metrics: [],
+      tags: ['Project coordination', 'Copywriting', 'Reporting'],
+      media: [],
+    },
+    {
+      id: 'studio-experience',
+      type: 'experience',
+      title: 'Connecting the dots, every day.',
+      client: 'Melbourne Convention and Exhibition Centre',
+      clientInitials: 'MCEC',
+      role: 'Catering Attendant',
+      date: 'June 2022 - Jan. 2023',
+      discipline: 'Experience',
+      illustrative: false,
+      description:
+        'Supported conferences, concerts, exhibitions, corporate functions and other events at the Convention Centre. They do so many things there.',
+      challenge:
+        'Keep multiple client workstreams aligned while maintaining a consistent standard across channels.',
+      strategy:
+        'Coordinated campaign calendars, wrote social and email content, briefed creative partners, and translated monthly reporting into clear next steps.',
+      results:
+        'Introduced a shared briefing template and reporting rhythm that helped the team make clearer decisions. Replace this entry with your actual responsibilities and achievements.',
+      metrics: [],
+      tags: ['Project coordination', 'Copywriting', 'Reporting'],
+      media: [],
+    },
+    {
+      id: 'studio-experience',
+      type: 'experience',
+      title: 'Connecting the dots, every day.',
+      client: 'Surf Dive n Ski',
+      clientInitials: 'SDS',
+      role: 'Retail Sales Assistant',
+      date: 'Oct. 2021 - Jan. 2022',
+      discipline: 'Experience',
+      illustrative: false,
+      description:
+        'Retail and customer service role. Sold mainly surf and skate clothes. Was pretty cool.',
       challenge:
         'Keep multiple client workstreams aligned while maintaining a consistent standard across channels.',
       strategy:

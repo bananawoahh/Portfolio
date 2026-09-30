@@ -31,10 +31,10 @@ export function AppIcon({ name }: { name: AppId | 'home' }) {
           <circle cx="16" cy="16" r="6" fill="currentColor" />
         </>
       )}
-      {name === 'contact' && (
+      {name === 'notes' && (
         <>
-          <rect x="3" y="7" width="26" height="19" rx="4" />
-          <path d="m4 9 12 9L28 9M4 25l8-8m16 8-8-8" />
+          <rect x="5" y="3" width="22" height="26" rx="3" />
+          <path d="M5 10h22M10 16h12M10 21h12M10 26h7" />
         </>
       )}
       {name === 'home' && (

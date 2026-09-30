@@ -221,9 +221,9 @@
   background: #6a58af;
   color: #fff;
 }
-.launcher-contact .app-icon-tile {
-  background: #2a9e87;
-  color: #fff;
+.launcher-notes .app-icon-tile {
+  background: #f6cd54;
+  color: #433814;
 }
 .app-launcher:hover .app-icon-tile {
   transform: translateY(-4px);

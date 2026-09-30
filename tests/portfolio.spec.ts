@@ -59,20 +59,8 @@ for (const viewport of viewports) {
     await expect(feed).toBeVisible();
     await expect(page.locator('.project-reel')).toHaveCount(projects.length);
     await page.screenshot({ path: testInfo.outputPath('portfolio.png') });
-    if (projects.length) {
-      await page.locator(`#open-project-${projects[0].id}`).click();
-      await expect(page.locator('#detail-heading')).toBeFocused();
-      const details = page.locator('.case-study-content');
-      await expect(
-        details.getByRole('heading', { name: projects[0].title, exact: true }),
-      ).toBeVisible();
-      await page.screenshot({ path: testInfo.outputPath('case-study.png') });
-      await details.evaluate((element) => {
-        element.scrollTop = element.scrollHeight;
-      });
-      await page.getByRole('button', { name: 'Back to reels', exact: true }).click();
-      await expect(page.locator(`#open-project-${projects[0].id}`)).toBeFocused();
-    }
+    await expect(feed.getByRole('button', { name: 'View case study' })).toHaveCount(0);
+    await expect(feed.locator('.reel-highlight, .metrics')).toHaveCount(0);
     if (projects.length > 1) {
       await page.getByRole('button', { name: 'Next project' }).click();
       await expect(page.locator('.reel-counter')).toContainText('02');
@@ -82,10 +70,6 @@ for (const viewport of viewports) {
       await expect(page.getByRole('button', { name: 'Portfolio', exact: true })).toBeFocused();
       await page.getByRole('button', { name: 'Portfolio', exact: true }).click();
       await expect.poll(() => feed.evaluate((element) => element.scrollTop)).toBeCloseTo(top, 0);
-      await page.locator(`#open-project-${projects[1].id}`).click();
-      await page.keyboard.press('Escape');
-      await expect(page.locator(`#open-project-${projects[1].id}`)).toBeFocused();
-      // On short screens, reaching the case-study button scrolls within the reel.
       const beforeLock = await feed.evaluate((element) => element.scrollTop);
       await page.getByRole('button', { name: 'Lock screen', exact: true }).click();
       await unlock(page);
@@ -96,7 +80,7 @@ for (const viewport of viewports) {
     }
     await page.getByRole('button', { name: 'Home', exact: true }).click();
 
-    for (const app of ['Resume', 'Skills', 'Contact']) {
+    for (const app of ['Resume', 'Skills', 'Notes']) {
       await page.getByRole('button', { name: app, exact: true }).click();
       await expect(page.locator(`#${app.toLowerCase()}-heading`)).toBeFocused();
       const content = page.getByRole('region', { name: `${app} content` });
@@ -205,7 +189,7 @@ test('enlarged text keeps app controls and the last content reachable', async ({
   await page.goto('./');
   await unlock(page);
   await page.addStyleTag({ content: ':root { font-size: 200%; }' });
-  for (const app of ['Portfolio', 'Resume', 'Skills', 'Contact']) {
+  for (const app of ['Portfolio', 'Resume', 'Skills', 'Notes']) {
     await page.getByRole('button', { name: app, exact: true }).click();
     const active = page.locator('.app-panel:not([hidden])');
     const scroller = active.locator('.screen-scroll, .reel-feed').first();
@@ -302,11 +286,8 @@ test('configured media frames preserve proportions on desktop and phone', async 
     await page.goto('./');
     await unlock(page);
     await page.getByRole('button', { name: 'Portfolio', exact: true }).click();
-    for (const detail of [false, true]) {
-      if (detail) await page.locator(`#open-project-${projects[0].id}`).click();
-      const carousel = page
-        .locator(detail ? '.case-study-content > .carousel' : '.project-reel .carousel')
-        .first();
+    {
+      const carousel = page.locator('.project-reel .carousel').first();
       // Exercise the responsive CSS contract for each supported configuration.
       for (const ratio of [9 / 16, 1, 16 / 9, 4 / 5]) {
         await carousel.evaluate((element, value) => {
@@ -316,7 +297,7 @@ test('configured media frames preserve proportions on desktop and phone', async 
         const box = (await carousel.locator('.carousel-track').boundingBox())!;
         expect(box.width / box.height).toBeCloseTo(ratio, 2);
         expect(box.width).toBeLessThan(viewport.width);
-        if (!detail && viewport.width < 680) {
+        if (viewport.width < 680) {
           const frame = (await carousel.boundingBox())!;
           const caption = (await page.locator('.reel-caption').first().boundingBox())!;
           expect(frame.y + frame.height).toBeLessThanOrEqual(caption.y + 1);
@@ -333,4 +314,49 @@ test('configured media frames preserve proportions on desktop and phone', async 
       }
     }
   }
+});
+
+test('portrait files fit the reel while landscape files keep the default frame', async ({
+  page,
+}) => {
+  test.skip(
+    projects[0]?.layout !== 'auto' || projects[0]?.media[0]?.type !== 'image',
+    'Requires an auto-layout image project.',
+  );
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  let portrait = true;
+  await page.route(`**/${projects[0].media[0].src}`, (route) =>
+    route.fulfill({
+      contentType: 'image/svg+xml',
+      body: `<svg xmlns="http://www.w3.org/2000/svg" width="${portrait ? 1080 : 1600}" height="${portrait ? 1920 : 900}"><rect width="100%" height="100%" fill="coral"/></svg>`,
+    }),
+  );
+  for (const viewport of [
+    { width: 1440, height: 1000 },
+    { width: 390, height: 844 },
+    { width: 320, height: 568 },
+    { width: 844, height: 390 },
+  ]) {
+    await page.setViewportSize(viewport);
+    await page.goto('./');
+    await unlock(page);
+    await page.getByRole('button', { name: 'Portfolio', exact: true }).click();
+    const carousel = page.locator('.project-reel .carousel').first();
+    await expect(carousel).toHaveClass(/carousel-portrait/);
+    await expect
+      .poll(async () => {
+        const frame = (await carousel.boundingBox())!;
+        const feed = (await page.locator('.reel-feed').boundingBox())!;
+        return frame.y + frame.height <= feed.y + feed.height + 1;
+      })
+      .toBe(true);
+    const track = (await carousel.locator('.carousel-track').boundingBox())!;
+    expect(track.width / track.height).toBeCloseTo(9 / 16, 2);
+    await expectFixedDocument(page);
+  }
+  portrait = false;
+  await page.reload();
+  await unlock(page);
+  await page.getByRole('button', { name: 'Portfolio', exact: true }).click();
+  await expect(page.locator('.project-reel .carousel').first()).not.toHaveClass(/carousel-sized/);
 });

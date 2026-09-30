@@ -8,7 +8,9 @@ function MediaAsset({
   media,
   active,
   title,
+  onDimensions,
 }: {
+  onDimensions: (width: number, height: number) => void;
   media: ProjectMedia;
   active: boolean;
   title: string;
@@ -63,6 +65,9 @@ function MediaAsset({
           .join(', ')}
         sizes={media.variants ? '(max-width: 767px) calc(100vw - 48px), 640px' : undefined}
         loading="lazy"
+        onLoad={(event) =>
+          onDimensions(event.currentTarget.naturalWidth, event.currentTarget.naturalHeight)
+        }
         decoding="async"
         onError={() => setFailed(true)}
       />
@@ -70,6 +75,9 @@ function MediaAsset({
   return (
     <video
       ref={videoRef}
+      onLoadedMetadata={(event) =>
+        onDimensions(event.currentTarget.videoWidth, event.currentTarget.videoHeight)
+      }
       controls
       playsInline
       preload="none"
@@ -105,6 +113,10 @@ export function MediaCarousel({
   isActive?: boolean;
   layout?: ProjectLayout;
 }) {
+  const [active, setActive] = useState(0);
+  const [dimensions, setDimensions] = useState<Record<string, number>>({});
+  const item = media[active];
+  const naturalRatio = item ? (dimensions[item.src] ?? item.width / item.height) : undefined;
   const ratio =
     typeof layout === 'object'
       ? Number.isFinite(layout.width) &&
@@ -113,8 +125,12 @@ export function MediaCarousel({
         layout.height > 0
         ? layout.width / layout.height
         : undefined
-      : { auto: undefined, portrait: 9 / 16, square: 1, landscape: 16 / 9 }[layout];
-  const [active, setActive] = useState(0);
+      : {
+          auto: naturalRatio && naturalRatio > 0 && naturalRatio < 1 ? naturalRatio : undefined,
+          portrait: 9 / 16,
+          square: 1,
+          landscape: 16 / 9,
+        }[layout];
   const trackRef = useRef<HTMLDivElement>(null);
   const activeRef = useRef(0);
   const multiple = media.length > 1;
@@ -139,9 +155,36 @@ export function MediaCarousel({
     return () => observer.disconnect();
   }, []);
 
+  const portrait = !!ratio && ratio < 1;
+  useEffect(() => {
+    const track = trackRef.current;
+    const carousel = track?.parentElement;
+    const reel = carousel?.closest<HTMLElement>('.project-reel');
+    const feed = reel?.parentElement;
+    if (!portrait || !carousel || !reel || !feed) return;
+    const header = reel.querySelector<HTMLElement>('.reel-byline');
+    const caption = reel.querySelector<HTMLElement>('.reel-caption');
+    const controls = carousel.querySelector<HTMLElement>('.carousel-controls');
+    const resize = () => {
+      if (!feed.clientHeight) return;
+      const stacked = getComputedStyle(reel).display !== 'grid';
+      const available =
+        feed.clientHeight -
+        (header?.offsetHeight ?? 0) -
+        (stacked ? (caption?.offsetHeight ?? 0) : 0) -
+        (controls?.offsetHeight ?? 0) -
+        16;
+      carousel.style.setProperty('--portrait-height', `${Math.max(96, available)}px`);
+    };
+    const observer = new ResizeObserver(resize);
+    [feed, header, caption, controls].forEach((element) => element && observer.observe(element));
+    resize();
+    return () => observer.disconnect();
+  }, [portrait, ratio, multiple]);
+
   return (
     <section
-      className={`carousel${ratio ? ' carousel-sized' : ''}`}
+      className={`carousel${ratio ? ' carousel-sized' : ''}${portrait ? ' carousel-portrait' : ''}`}
       style={ratio ? ({ '--media-ratio': ratio } as CSSProperties) : undefined}
       aria-label={`${title} media`}
       aria-roledescription="carousel"
@@ -180,7 +223,19 @@ export function MediaCarousel({
             aria-label={`${index + 1} of ${media.length}`}
             inert={index !== active}
           >
-            <MediaAsset media={item} active={isActive && index === active} title={title} />
+            <MediaAsset
+              media={item}
+              active={isActive && index === active}
+              title={title}
+              onDimensions={(width, height) => {
+                if (width > 0 && height > 0)
+                  setDimensions((previous) =>
+                    previous[item.src] === width / height
+                      ? previous
+                      : { ...previous, [item.src]: width / height },
+                  );
+              }}
+            />
           </div>
         ))}
       </div>
