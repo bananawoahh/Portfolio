@@ -60,12 +60,12 @@ export const portfolio: Portfolio = {
     ],
   },
   seo: {
-    title: 'Alex Morgan — Marketing & Communications Portfolio', // REPLACE
+    title: 'King’s Portfolio', // REPLACE
     description:
-      'Thoughtful strategy. Human stories. Explore Alex Morgan’s marketing, content, social media, and communications portfolio. Sample portfolio content.',
+      '',
     siteUrl: '', // Optional canonical URL; GitHub Actions supplies the Pages URL automatically.
-    image: 'media/social-card.png',
-    imageAlt: 'Alex Morgan — Good stories. Clear strategy. Real impact.', // REPLACE
+    image: '',
+    imageAlt: '', // REPLACE
   },
   skills: [
     {
