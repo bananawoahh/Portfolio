@@ -362,6 +362,8 @@ test('portrait files fit the reel while landscape files keep the default frame',
 });
 
 test('News opens local HTML and returns to the reading list', async ({ page }) => {
+  test.skip(!portfolio.articles.length, 'No articles configured.');
+  const article = portfolio.articles[0];
   await page.goto('./');
   await unlock(page);
   await page.getByRole('button', { name: 'News', exact: true }).click();
@@ -369,8 +371,13 @@ test('News opens local HTML and returns to the reading list', async ({ page }) =
   await read.click();
   await expect(page.locator('#article-heading')).toBeFocused();
   await expect(page.locator('.article-reader')).toBeVisible();
-  await expect(page.frameLocator('.article-reader').locator('body')).toContainText(
-    'A space for ideas',
+  await expect(page.locator('#article-heading')).toHaveText(article.title);
+  await expect(page.locator('.article-reader')).toHaveAttribute('title', article.title);
+  await expect(page.frameLocator('.article-reader').locator('body')).toContainText(/\S/);
+  const articlePath = `${process.env.BASE_PATH || '/'}${article.file}`;
+  await expect(page.frameLocator('.article-reader').locator('base')).toHaveAttribute(
+    'href',
+    new URL(articlePath, page.url()).href,
   );
   await expect(page.locator('.article-reader')).toHaveAttribute('sandbox', '');
   await page.getByRole('button', { name: 'Back to News' }).click();
@@ -379,8 +386,11 @@ test('News opens local HTML and returns to the reading list', async ({ page }) =
 });
 
 test('News shows an unavailable state for missing documents', async ({ page }) => {
-  await page.route('**/articles/welcome.html', (route) =>
-    route.fulfill({ status: 404, body: 'Missing' }),
+  test.skip(!portfolio.articles.length, 'No articles configured.');
+  const articlePath = `${process.env.BASE_PATH || '/'}${portfolio.articles[0].file}`;
+  await page.route(
+    (url) => url.pathname === new URL(articlePath, 'http://localhost').pathname,
+    (route) => route.fulfill({ status: 404, body: 'Missing' }),
   );
   await page.goto('./');
   await unlock(page);
