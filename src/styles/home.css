@@ -523,3 +523,17 @@
     display: none;
   }
 }
+
+.launcher-news .app-icon-tile {
+  background: #c94f49;
+  color: white;
+}
+.home-apps {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+@media (max-width: 450px) {
+  .home-apps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 20px;
+  }
+}

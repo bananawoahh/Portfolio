@@ -3,7 +3,7 @@
 # iPad portfolio
 
 A React + TypeScript portfolio presented as an interactive iPad: a live lock screen, wallpaper-based
-home screen, widgets, and four working apps. The device is landscape on desktop and portrait on phones.
+home screen, widgets, and five working apps. The device is landscape on desktop and portrait on phones.
 The page stays fixed; scrolling happens only inside the iPad.
 
 ## Run locally
@@ -105,7 +105,7 @@ not password protection; the portfolio remains a public static website.
 
 The clock uses the visitor's local timezone and locale. It updates each minute and resynchronizes when
 returning to the tab. The home screen includes a clock/calendar widget, a Resume profile widget, a
-featured Portfolio widget, four apps, and a dock of favourites. No live weather, battery, or account
+featured Portfolio widget, five apps, and a dock of favourites. No live weather, battery, or account
 integration is simulated.
 
 - **Portfolio:** scroll/swipe vertically between projects, swipe horizontally between assets, or use
@@ -192,3 +192,11 @@ social card. No external fonts, analytics, tracking, stock photography, or socia
 
 To regenerate the sample share PNG after editing `public/media/social-card.svg`, run
 `npm run social-card` with Playwright Chromium installed (or the Chrome executable environment variable).
+
+## News: articles, essays, and research
+
+The **News** app is a reading room alongside your other apps. Edit the `articles` array in
+`src/data/portfolio.ts` to add titles, summaries, categories, dates, and local HTML paths.
+Put the documents in `public/articles/`; see [the article guide](public/articles/README.md)
+for an example entry and asset instructions. Articles open inside the iPad with **Back to News**
+navigation. Static HTML formatting is supported; embedded scripts and forms are disabled.

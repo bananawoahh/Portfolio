@@ -17,7 +17,7 @@ export function HomeScreen({
       <div className="home-content">
         <HomeWidgets data={data} now={now} onOpen={onOpen} />
         <nav className="home-apps" aria-label="Portfolio apps">
-          {(['portfolio', 'resume', 'skills', 'notes'] as const).map((app) => (
+          {(['portfolio', 'resume', 'skills', 'notes', 'news'] as const).map((app) => (
             <AppLauncher key={app} app={app} onOpen={onOpen} />
           ))}
         </nav>

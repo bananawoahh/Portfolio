@@ -80,7 +80,7 @@ for (const viewport of viewports) {
     }
     await page.getByRole('button', { name: 'Home', exact: true }).click();
 
-    for (const app of ['Resume', 'Skills', 'Notes']) {
+    for (const app of ['Resume', 'Skills', 'Notes', 'News']) {
       await page.getByRole('button', { name: app, exact: true }).click();
       await expect(page.locator(`#${app.toLowerCase()}-heading`)).toBeFocused();
       const content = page.getByRole('region', { name: `${app} content` });
@@ -189,7 +189,7 @@ test('enlarged text keeps app controls and the last content reachable', async ({
   await page.goto('./');
   await unlock(page);
   await page.addStyleTag({ content: ':root { font-size: 200%; }' });
-  for (const app of ['Portfolio', 'Resume', 'Skills', 'Notes']) {
+  for (const app of ['Portfolio', 'Resume', 'Skills', 'Notes', 'News']) {
     await page.getByRole('button', { name: app, exact: true }).click();
     const active = page.locator('.app-panel:not([hidden])');
     const scroller = active.locator('.screen-scroll, .reel-feed').first();
@@ -359,4 +359,34 @@ test('portrait files fit the reel while landscape files keep the default frame',
   await unlock(page);
   await page.getByRole('button', { name: 'Portfolio', exact: true }).click();
   await expect(page.locator('.project-reel .carousel').first()).not.toHaveClass(/carousel-sized/);
+});
+
+test('News opens local HTML and returns to the reading list', async ({ page }) => {
+  await page.goto('./');
+  await unlock(page);
+  await page.getByRole('button', { name: 'News', exact: true }).click();
+  const read = page.locator('.news-card button').first();
+  await read.click();
+  await expect(page.locator('#article-heading')).toBeFocused();
+  await expect(page.locator('.article-reader')).toBeVisible();
+  await expect(page.frameLocator('.article-reader').locator('body')).toContainText(
+    'A space for ideas',
+  );
+  await expect(page.locator('.article-reader')).toHaveAttribute('sandbox', '');
+  await page.getByRole('button', { name: 'Back to News' }).click();
+  await expect(read).toBeFocused();
+  await expectFixedDocument(page);
+});
+
+test('News shows an unavailable state for missing documents', async ({ page }) => {
+  await page.route('**/articles/welcome.html', (route) =>
+    route.fulfill({ status: 404, body: 'Missing' }),
+  );
+  await page.goto('./');
+  await unlock(page);
+  await page.getByRole('button', { name: 'News', exact: true }).click();
+  await page.locator('.news-card button').first().click();
+  await expect(page.getByRole('heading', { name: 'Article unavailable' })).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('region', { name: 'News content' })).toBeVisible();
 });

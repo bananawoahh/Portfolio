@@ -1,4 +1,4 @@
-export type AppId = 'portfolio' | 'resume' | 'skills' | 'notes';
+export type AppId = 'portfolio' | 'resume' | 'skills' | 'notes' | 'news';
 
 export interface Education {
   institution: string;
@@ -60,7 +60,17 @@ export interface Project {
   illustrative: boolean;
 }
 
+export interface NewsArticle {
+  id: string;
+  title: string;
+  category: 'Article' | 'Essay' | 'Research';
+  date: string;
+  summary: string;
+  file: string; // Relative to public/, e.g. articles/my-article.html
+}
+
 export interface Portfolio {
+  articles: NewsArticle[];
   notes: { title: string; body: string; signOff: string };
   sampleContent: boolean;
   device: { wallpaper: string; wallpaperPosition: string };

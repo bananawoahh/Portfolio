@@ -8,22 +8,19 @@ export function Navigation({
   title,
   children,
   onBack,
+  backLabel = 'Back to portfolio',
 }: {
   app: AppId | 'detail';
   title: string;
   children?: ReactNode;
   onBack?: () => void;
+  backLabel?: string;
 }) {
   return (
     <header className={`app-navigation ${app === 'portfolio' ? 'app-navigation-dark' : ''}`}>
       <div className="app-navigation-title">
         {onBack ? (
-          <button
-            type="button"
-            className="back-button"
-            onClick={onBack}
-            aria-label="Back to portfolio"
-          >
+          <button type="button" className="back-button" onClick={onBack} aria-label={backLabel}>
             <Arrow direction="left" />
           </button>
         ) : (

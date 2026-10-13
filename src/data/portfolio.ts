@@ -6,6 +6,18 @@ import type { Portfolio } from '../types';
  * Media paths are relative to public/ and must not include "public/".
  */
 export const portfolio: Portfolio = {
+  // Add your writing here; HTML files live in public/articles/.
+  articles: [
+    {
+      id: 'data-del-ray',
+      title: 'Data Del Ray: What Can Lana’s Previous Album Tell Us About Her Next One?',
+      category: 'Article',
+      date: '2025-06',
+      summary:
+        'A digital data essay project, researching cultural datasets using Python.',
+      file: 'articles/data-del-ray.html',
+    },
+  ],
   sampleContent: true,
   device: {
     wallpaper: 'media/ipad-wallpaper.svg', // REPLACE with media/your-wallpaper.webp
@@ -61,8 +73,7 @@ export const portfolio: Portfolio = {
   },
   seo: {
     title: 'King’s Portfolio', // REPLACE
-    description:
-      '',
+    description: '',
     siteUrl: '', // Optional canonical URL; GitHub Actions supplies the Pages URL automatically.
     image: '',
     imageAlt: '', // REPLACE

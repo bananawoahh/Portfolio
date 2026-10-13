@@ -37,6 +37,13 @@ export function AppIcon({ name }: { name: AppId | 'home' }) {
           <path d="M5 10h22M10 16h12M10 21h12M10 26h7" />
         </>
       )}
+      {name === 'news' && (
+        <>
+          <rect x="4" y="4" width="24" height="24" rx="3" />
+          <path d="M9 10h14M17 15h6M17 19h6M9 24h14" />
+          <rect x="9" y="15" width="4" height="5" />
+        </>
+      )}
       {name === 'home' && (
         <>
           <rect x="5" y="5" width="8" height="8" rx="2" />

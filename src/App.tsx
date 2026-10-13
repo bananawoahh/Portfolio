@@ -7,6 +7,7 @@ import { LockScreen } from './components/LockScreen';
 import { HomeScreen } from './components/HomeScreen';
 import { PortfolioApp } from './components/apps/PortfolioApp';
 import { ResumeApp, SkillsApp } from './components/apps/ProfileApps';
+import { NewsApp } from './components/apps/NewsApp';
 import { NotesApp } from './components/apps/NotesApp';
 
 export function App() {
@@ -81,6 +82,9 @@ export function App() {
         </div>
         <div className="app-panel" hidden={app !== 'notes'}>
           <NotesApp data={portfolio} />
+        </div>
+        <div className="app-panel" hidden={app !== 'news'}>
+          <NewsApp data={portfolio} active={!locked && app === 'news'} />
         </div>
       </IPadFrame>
     </main>
